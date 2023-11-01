@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from typing import List
 
 # 사용자 등록 요청
 class UserCreate(BaseModel):
@@ -12,3 +13,7 @@ class User(BaseModel):
     username: str
     name: str
     age: int
+    ownedVegetableIDs: List[int] = []
+
+    class Config:
+        orm_mode = True

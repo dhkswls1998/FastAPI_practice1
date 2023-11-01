@@ -9,12 +9,22 @@ router = APIRouter()
 
 # SQLAlchemy 모델 (User) -> Pydantic 모델 (UserPydantic)
 def sqlalchemy_to_pydantic(user: User) -> UserPydantic:
-    return UserPydantic(username=user.username, name=user.name, age=user.age)
+    return UserPydantic(
+        username=user.username,
+        name=user.name,
+        age=user.age,
+        ownedVegetableIDs=user.get_owned_vegetable_ids()
+    )
 
 # 회원가입 엔드포인트
 @router.post("/register", response_model=UserPydantic)
 def register_user(user: UserCreate, db: Session = Depends(get_db)):
-    db_user = User(username=user.username, password=user.password, name=user.name, age=user.age)
+    db_user = User(
+        username=user.username,
+        password=user.password,
+        name=user.name,
+        age=user.age,
+        )
     db.add(db_user)
     db.commit()
     db.refresh(db_user)
