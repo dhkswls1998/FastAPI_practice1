@@ -6,6 +6,7 @@ from app.database.sqlite import engine
 from app.routers import router_user
 from app.routers import router_vegetable
 from app.routers import router_garden
+from app.routers import router_xxx
 
 app = FastAPI()
 
@@ -34,6 +35,7 @@ UserBase.metadata.create_all(bind=engine)
 app.include_router(router_user.router)
 # app.include_router(router_vegetable.router)
 # app.include_router(router_garden.router)
+app.include_router(router_xxx.router)
 
 if __name__ == "__main__":
     import uvicorn
