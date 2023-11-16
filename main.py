@@ -10,8 +10,8 @@ app = FastAPI()
 
 # CORS 설정 : local test -> 주석처리 변경
 origins = ["null"]
-# origins = ["http://192.168.74.31:8080"]
 # origins = ["http://localhost:8080"]
+# origins = ["http://192.168.74.31:8080"]
 # origins = ["http://59.5.235.142:8080"]
 
 app.add_middleware(
